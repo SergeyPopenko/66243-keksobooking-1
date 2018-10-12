@@ -58,6 +58,16 @@
   overflow: hidden;
 }
 
+.absolutelly-hidden {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
 .hidden {
   display: none;
 }
@@ -228,6 +238,7 @@ fieldset {
   height: 65px;
 
   cursor: move;
+  will-change: left top;
 }
 
 .map__pin--main img {
@@ -542,11 +553,16 @@ fieldset {
   background-color: #dadada;
 }
 
+.ad-form-header__preview img {
+  object-fit: cover;
+}
+
 .ad-form__field {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   width: 150px;
+  position: relative;
 }
 
 .ad-form-header__info {
@@ -568,8 +584,12 @@ fieldset {
   cursor: pointer;
 }
 
-.ad-form-header__drop-zone:hover {
+.ad-form-header__input:hover + .ad-form-header__drop-zone {
   color: #ff5635;
+}
+
+.ad-form-header__input:hover {
+  cursor: pointer;
 }
 
 .ad-form-header__drop-zone:focus,
@@ -770,10 +790,13 @@ fieldset {
 
   width: 150px;
   min-height: 70px;
+  position: relative;
 }
 
 .ad-form__upload .ad-form__input {
   width: auto;
+  max-width: 100%;
+  height: 90%;
 }
 
 .ad-form__upload:last-of-type {
@@ -794,8 +817,12 @@ fieldset {
   cursor: pointer;
 }
 
-.ad-form__drop-zone:hover {
+.ad-form__input:hover + .ad-form__drop-zone {
   color: #ff5635;
+}
+
+.ad-form__input:hover {
+  cursor: pointer;
 }
 
 .ad-form__drop-zone:focus,
@@ -814,6 +841,14 @@ fieldset {
 
   background-color: #e4e4de;
   border-radius: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.ad-form__photo img {
+  object-fit: cover;
 }
 
 .ad-form__element--submit {
