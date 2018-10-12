@@ -1,13 +1,7 @@
 'use strict';
 
-/**
- * Create, render and toggle pin card popup
- */
 (function () {
-  /**
-   * Card photo sizes
-   * @enum {number}
-   */
+
   var Preview = {
     WIDTH: 45,
     HEIGHT: 40
@@ -19,10 +13,6 @@
   var close;
   var card;
 
-  /**
-   * Creates and appends card to map
-   * @param {Object<string,number>} pin - single data item
-   */
   var open = function (pin) {
     if (isShow) {
       hide();
@@ -41,9 +31,6 @@
     isShow = true;
   };
 
-  /**
-   * Hide popup
-   */
   var hide = function () {
     if (card) {
       close.removeEventListener('click', closeClickHandler);
@@ -55,26 +42,14 @@
     isShow = false;
   };
 
-  /**
-   * Handler for popup close
-   */
   var closeClickHandler = function () {
     hide();
   };
 
-  /**
-   * Handler for close popup on ESC press
-   * @param {KeyboardEvent} evt - keyboard event
-   */
   var keydownHandler = function (evt) {
     window.utils.escKeyCheck(evt.keyCode, hide);
   };
 
-  /**
-   * Creates card from template
-   * @param {Object<string,number>} pin
-   * @return {HTMLElement}
-   */
   var create = function (pin) {
     var item = template.cloneNode(true);
     var features = item.querySelector('.popup__features');
@@ -105,11 +80,6 @@
     return item;
   };
 
-  /**
-   * Adds features into card template
-   * @param {HTMLElement} parent - target elem
-   * @param {Array<string>} offer - data
-   */
   var renderFeatures = function (parent, offer) {
     if (offer.features && offer.features.length > 0) {
       var items = createFeatures(offer.features);
@@ -124,12 +94,6 @@
     }
   };
 
-  /**
-   * Adds previews into card template
-   * @param {HTMLElement} parent - target elem
-   * @param {Array<string>} offer - data
-   * @param {string} title - alt text
-   */
   var renderPreviews = function (parent, offer) {
     if (offer.photos && offer.photos.length > 0) {
       var previews = createPreviews(offer.photos, offer.title);
@@ -144,11 +108,6 @@
     }
   };
 
-  /**
-   * Renders single feature
-   * @param {Array<string,number>} features
-   * @return {HTMLElement}
-   */
   var createFeatures = function (features) {
     return features.map(function (feature) {
       var item = document.createElement('li');
@@ -159,12 +118,6 @@
     });
   };
 
-  /**
-   * Renders single preview
-   * @param {Array<string>} photos - data
-   * @param {string} title - alt text
-   * @return {HTMLElement}
-   */
   var createPreviews = function (photos, title) {
     var previews = window.utils.getSortedList(photos);
 

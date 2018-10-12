@@ -1,17 +1,9 @@
 'use strict';
 
-/**
- * Create and render pins from template
- */
 (function () {
   var template = document.querySelector('#pin').content;
   var list = document.querySelector('.map__pins');
 
-  /**
-   * Creates pin from template
-   * @param {Array<string,number>} host
-   * @return {HTMLElement}
-   */
   var create = function (host) {
     var pin = template.cloneNode(true);
     var item = pin.querySelector('.map__pin');
@@ -27,10 +19,6 @@
     return item;
   };
 
-  /**
-     * Render pins list
-     * @param {Array<string,number>} pins
-     */
   var render = function (pins) {
     var fragment = document.createDocumentFragment();
 

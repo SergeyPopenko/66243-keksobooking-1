@@ -3,10 +3,6 @@
 (function () {
   var FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png', 'svg'];
 
-  /**
-   * Uploaded photo size
-   * @enum {number}
-   */
   var Preview = {
     WIDTH: 70,
     HEIGHT: 70
@@ -22,22 +18,12 @@
   var housingUpload = housing.querySelector('#images');
   var housingCards = housing.querySelectorAll('.ad-form__photo');
 
-  /**
-   * Check file type
-   * @param {string} names
-   * @return {boolean}
-   */
   var matches = function (names) {
     return FILE_TYPES.some(function (type) {
       return names.endsWith(type);
     });
   };
 
-  /**
-   * Reads file and puts it in callback
-   * @param {Object} file
-   * @param {function} readerLoadCallback
-   */
   var render = function (file, readerLoadCallback) {
     var fileName = file.name.toLowerCase();
 
@@ -54,11 +40,6 @@
     }
   };
 
-  /**
-   * Creates and renders uploaded pic
-   * @param {Object} file
-   * @return {HTMLElement}
-   */
   var createPreview = function (file) {
     var preview = document.createElement('div');
     var pic = new Image(Preview.WIDTH, Preview.HEIGHT);
@@ -73,18 +54,10 @@
     return preview;
   };
 
-  /**
-   * Changes single uploaded pic
-   * @param {ProgressEvent} evt
-   */
   var setHeaderAvatar = function (evt) {
     headerAvatar.src = evt.currentTarget.result;
   };
 
-  /**
-   * Renders multi uploaded pics
-   * @param {ProgressEvent} evt
-   */
   var showHousingPhotos = function (evt) {
     var file = evt.currentTarget.result;
     var card = createPreview(file);
@@ -96,16 +69,10 @@
     housing.appendChild(card);
   };
 
-  /**
-   * Handler for single upload field
-   */
   var headerUploadChangeHandler = function () {
     render(headerUpload.files[0], setHeaderAvatar);
   };
 
-  /**
-   * Handler for multi upload field
-   */
   var housingUploadChangeHandler = function () {
     var files = Array.from(housingUpload.files);
 
@@ -118,18 +85,11 @@
     });
   };
 
-  /**
-   * Toggle css classes
-   * @param {HTMLElement} item
-   */
   var activateDragUpload = function (item) {
     item.classList.remove('visually-hidden');
     item.classList.add('absolutelly-hidden');
   };
 
-  /**
-   * Adds upload handlers
-   */
   var addHandlers = function () {
     activateDragUpload(headerUpload);
     activateDragUpload(housingUpload);
@@ -140,9 +100,6 @@
     housingUpload.addEventListener('change', housingUploadChangeHandler);
   };
 
-  /**
-   * Removes upload handlers
-   */
   var removeHandlers = function () {
     var cards = Array.from(housingCards);
 
@@ -154,18 +111,10 @@
     });
   };
 
-  /**
-   * Dragover prevent
-   * @param {DragEvent} evt
-   */
   var dragoverHandler = function (evt) {
     evt.preventDefault();
   };
 
-  /**
-   * Drag & drop complete
-   * @param {DragEvent} evt
-   */
   var dropHandler = function (evt) {
     var dragItem = evt.dataTransfer.getData('id', evt.currentTarget.id);
 
@@ -177,10 +126,6 @@
     evt.currentTarget.removeEventListener('drop', dropHandler);
   };
 
-  /**
-   * Drag & drop init
-   * @param {DragEvent} evt
-   */
   var dragstartHandler = function (evt) {
     evt.dataTransfer.setData('id', evt.currentTarget.id);
 

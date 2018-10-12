@@ -1,9 +1,5 @@
 'use strict';
 
-/**
- * Checks data values
- * @return {Array}
- */
 (function () {
   var parse = function (pin) {
     var items = [

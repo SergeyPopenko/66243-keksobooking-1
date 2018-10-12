@@ -1,13 +1,7 @@
 'use strict';
 
-/**
- * Checks form fields and set properties
- */
 (function () {
-  /**
-   * Room available
-   * @enum {number}
-   */
+
   var Apartment = {
     MIN: 1,
     MID: 3
@@ -29,17 +23,10 @@
   var reset = form.querySelector('.ad-form__reset');
   var times = form.querySelectorAll('.ad-form__element--time select');
 
-  /**
-   * Update field value
-   * @param {string} position
-   */
   var setAdress = function (position) {
     address.value = position;
   };
 
-  /**
-   * Updates min and placeholder in form price field
-   */
   var setPrice = function () {
     var cost = window.utils.getHostType(type.value).minCost;
 
@@ -47,28 +34,16 @@
     price.placeholder = cost;
   };
 
-  /**
-   * Toggle disabled property for fields
-   * @param {Array<HTMLElement>} fields to toggle
-   * @param {boolean} isDisabled - indicates when field disabled
-   */
   var setDisabled = function (fields, isDisabled) {
     fields.forEach(function (field) {
       field.disabled = isDisabled;
     });
   };
 
-  /**
-   * Handler for update host min price on change host type
-   */
   var typeChangeHandler = function () {
     setPrice();
   };
 
-  /**
-   * Handler for update host check time field
-   * @param {Object} evt - change select event
-   */
   var timeChangeHandler = function (evt) {
     times.forEach(function (time) {
       if (evt.target.value !== time.value) {
@@ -77,10 +52,6 @@
     });
   };
 
-  /**
-   * Filter rooms count by host sizes
-   * @param {boolean} isReset - indicates when form resets
-   */
   var renderPlaces = function (isReset) {
     var space = room.value;
     var area = isReset ? Apartment.MIN : space;
@@ -97,32 +68,20 @@
     });
   };
 
-  /**
-   * Check current rooms count and render options
-   */
   var update = function () {
     renderPlaces(false);
   };
 
-  /**
-   * Restore price and adress field values
-   */
   var updateValues = function () {
     setPrice();
     setAdress(window.main.getPinPosition());
   };
 
-  /**
-   * Handler for restore field values
-   */
   var resetClickHandler = function () {
     renderPlaces(true);
     resetForm();
   };
 
-  /**
-   * Handler for update room/capacity value in selects
-   */
   var roomChangeHandler = function () {
     update();
   };
@@ -139,7 +98,6 @@
     form.addEventListener('submit', formSubmitHandler);
   };
 
-  // disable handlers
   var removeHandlers = function () {
     times.forEach(function (time) {
       time.removeEventListener('change', timeChangeHandler);
@@ -151,10 +109,6 @@
     form.removeEventListener('submit', formSubmitHandler);
   };
 
-  /**
-   * Init event listeners when page becomes active
-   * @param {string} position
-   */
   var init = function (position) {
     setAdress(position);
     setPrice();
@@ -164,24 +118,14 @@
     form.classList.remove('ad-form--disabled');
   };
 
-  /**
-   * Handler for close popup on ESC press
-   * @param {KeyboardEvent} evt - keyboard event
-   */
   var keydownHandler = function (evt) {
     window.utils.escKeyCheck(evt.keyCode, hideMessage);
   };
 
-  /**
-   * Handler for close popup on click
-   */
   var clickHandler = function () {
     hideMessage();
   };
 
-  /**
-   * Removes success popup and handlers
-   */
   var hideMessage = function () {
     var dialog = document.querySelector('.success');
 
@@ -191,9 +135,6 @@
     document.removeEventListener('click', clickHandler);
   };
 
-  /**
-   * Renders success popup and add handlers
-   */
   var showMessage = function () {
     var template = document.querySelector('#success')
       .content.cloneNode(true);
@@ -205,9 +146,6 @@
     document.addEventListener('click', clickHandler);
   };
 
-  /**
-   * Returns form pics placeholders
-   */
   var setDefaultPics = function () {
     var avatar = form.querySelector('.ad-form-header__preview img');
     var images = form.querySelectorAll('.ad-form__photo');
@@ -224,9 +162,6 @@
     avatar.src = avatar.dataset.origin;
   };
 
-  /**
-   * Disable page elements
-   */
   var resetForm = function () {
     form.reset();
     form.classList.add('ad-form--disabled');
@@ -239,32 +174,19 @@
     window.main.resetPage();
   };
 
-  /**
-   * Form cleanup and return page to default
-   */
   var setSuccess = function () {
     resetForm();
     showMessage();
   };
 
-  /**
-   * Handler for close popup on ESC press
-   * @param {KeyboardEvent} evt - keyboard event
-   */
   var errorKeydownHandler = function (evt) {
     window.utils.escKeyCheck(evt.keyCode, hideError);
   };
 
-  /**
-   * Handler for close popup on click
-   */
   var errorClickHandler = function () {
     hideError();
   };
 
-  /**
-   * Renders error popup and add handlers
-   */
   var showError = function () {
     var template = document.querySelector('#error')
       .content.cloneNode(true);
@@ -276,9 +198,6 @@
     document.addEventListener('click', errorClickHandler);
   };
 
-  /**
-   * Removes success popup and handlers
-   */
   var hideError = function () {
     var dialog = document.querySelector('.error');
 
@@ -288,10 +207,6 @@
     document.removeEventListener('click', errorClickHandler);
   };
 
-  /**
-   * Send form and validate status
-   * @param {Object} evt
-   */
   var formSubmitHandler = function (evt) {
     evt.preventDefault();
 
