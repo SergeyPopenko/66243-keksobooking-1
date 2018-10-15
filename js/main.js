@@ -46,7 +46,7 @@
       startPoints = {
         x: moveEvt.clientX,
         y: moveEvt.clientY
-      }
+      };
 
       var currentY = pin.offsetTop - currentPoints.y;
       var currentX = startPoints.x - currentPoints.x - map.offsetLeft - window.utils.Pin.MAIN_GAP;
