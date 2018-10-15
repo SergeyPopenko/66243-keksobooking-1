@@ -62,6 +62,7 @@
 
     var mouseupHandler = function (upEvt) {
       upEvt.preventDefault();
+      window.form.init(getPinPosition());
 
       document.removeEventListener('mousemove', pinMousemoveHandler);
       document.removeEventListener('mouseup', mouseupHandler);
@@ -117,6 +118,8 @@
     pin.removeEventListener('mousedown', pinMousedownHandler);
     pin.removeEventListener('keydown', pinKeydownHandler);
     document.removeEventListener('mouseup', mouseupHandler);
+
+    pin.addEventListener('mousedown', pinMousedownHandler);
   };
 
   var disableFields = function () {
@@ -145,10 +148,12 @@
     window.form.setAdress([Start.LEFT, Start.TOP].join(', '));
   };
 
-  var mouseupHandler = function () {
-    setPageActive();
+  var mouseupHandler = function (evt) {
+    if(!evt.target.closest(`.success`)){
+      setPageActive();
 
-    document.removeEventListener('mouseup', mouseupHandler);
+      document.removeEventListener('mouseup', mouseupHandler);
+    }
   };
 
   var pinKeydownHandler = function (evt) {
@@ -168,6 +173,7 @@
   setPageDisabled();
 
   var resetPage = function () {
+    console.log(`resetPage`);
     hideMap();
     setPageDisabled();
     resetPinPosition();
