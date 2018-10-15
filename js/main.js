@@ -28,13 +28,19 @@
     pin.style.top = Start.TOP + 'px';
   };
 
+
   var pinMousedownHandler = function (evt) {
     var startPoints = {
       x: evt.clientX,
       y: evt.clientY
     };
+      console.log(`startPoints `);
+      console.log(startPoints);
+
 
     var pinMousemoveHandler = function (moveEvt) {
+      console.log(`moveEvt`);
+      console.log(moveEvt);
       moveEvt.preventDefault();
 
       var currentPoints = {
@@ -42,14 +48,22 @@
         y: startPoints.y - moveEvt.clientY
       };
 
-      var currentY = startPoints.y - currentPoints.y
-        - window.utils.Pin.MAIN_GAP_BIG / 2;
-      var currentX = startPoints.x - currentPoints.x - map.offsetLeft
-        - window.utils.Pin.MAIN_GAP;
+      startPoints = {
+        x: moveEvt.clientX,
+        y: moveEvt.clientY
+      }
+
+      console.log(`currentPoints `);
+      console.log(currentPoints);
+
+      var currentY = pin.offsetTop - currentPoints.y;
+      var currentX = startPoints.x - currentPoints.x - map.offsetLeft - window.utils.Pin.MAIN_GAP;
+
       var startY = window.utils.Coordinate.MIN + window.utils.Pin.MAIN_GAP_BIG;
       var stopY = window.utils.Coordinate.MAX - window.utils.Pin.MAIN_GAP_BIG;
       var stopLeftX = 0;
       var stopRightX = map.offsetWidth - window.utils.Pin.MAIN_GAP_BIG;
+      console.log(`currentY ` + currentY);
 
       if (stopY > currentY && startY < currentY) {
         pin.style.top = currentY + 'px';
