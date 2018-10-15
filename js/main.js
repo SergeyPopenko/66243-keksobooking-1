@@ -48,10 +48,8 @@
         y: moveEvt.clientY
       }
 
-
       var currentY = pin.offsetTop - currentPoints.y;
       var currentX = startPoints.x - currentPoints.x - map.offsetLeft - window.utils.Pin.MAIN_GAP;
-
       var startY = window.utils.Coordinate.MIN + window.utils.Pin.MAIN_GAP_BIG;
       var stopY = window.utils.Coordinate.MAX - window.utils.Pin.MAIN_GAP_BIG;
       var stopLeftX = 0;
