@@ -149,7 +149,7 @@
   };
 
   var mouseupHandler = function (evt) {
-    if(!evt.target.closest(`.success`)){
+    if(!evt.target.closest('.success')){
       setPageActive();
 
       document.removeEventListener('mouseup', mouseupHandler);

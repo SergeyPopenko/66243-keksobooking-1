@@ -122,10 +122,6 @@
     window.utils.escKeyCheck(evt.keyCode, hideMessage);
   };
 
-  var clickHandler = function () {
-    hideMessage();
-  };
-
   var hideMessage = function () {
     var dialog = document.querySelector('.success');
 
