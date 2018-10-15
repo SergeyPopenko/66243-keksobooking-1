@@ -173,7 +173,6 @@
   setPageDisabled();
 
   var resetPage = function () {
-    console.log(`resetPage`);
     hideMap();
     setPageDisabled();
     resetPinPosition();

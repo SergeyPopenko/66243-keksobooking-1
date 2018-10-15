@@ -131,7 +131,6 @@
 
     dialog.remove();
 
-    // document.removeEventListener('keydown', keydownHandler);
     document.removeEventListener('click', hideMessage);
   };
 
@@ -142,7 +141,6 @@
 
     main.appendChild(template);
 
-    // document.addEventListener('keydown', keydownHandler);
     document.addEventListener('click', hideMessage);
   };
 
@@ -163,7 +161,6 @@
   };
 
   var resetForm = function () {
-    console.log(`resetForm`);
     form.reset();
     form.classList.add('ad-form--disabled');
 
@@ -176,7 +173,6 @@
   };
 
   var setSuccess = function () {
-    console.log(`setSuccess`);
     resetForm();
     showMessage();
   };
